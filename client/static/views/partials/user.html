@@ -1,0 +1,32 @@
+<div ng-controller='loginController'>
+  <div class="row">
+    <div class="col-sm-4">
+      <ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Bucket List</a></li>
+  <li role="presentation"><a href="#/dashboard">Home</a></li>
+  <li role="presentation"><a href="#/" ng-click="logout()">Logout</a></li>
+</ul>
+    </div>
+  </div>
+  <h1>{{user.created[0].creator}}'s Bucket List</h1>
+      <div>
+        <h3>Done</h3>
+        <div ng-repeat='x in user'>
+          <div ng-repeat='i in x'>
+          <p ng-if='loggeduser._id == i._creator && i.status == true'><input ng-click='status(i)' type="checkbox" ng-checked="i.status==true" ng-model='bucket.status'> {{i.creator}} | {{i.title}} - {{i.description}} - {{i.created_at | date: 'mediumDate' }}</p>
+          <p ng-if='loggeduser._id != i._creator && i.status == true'><input type="checkbox" ng-checked="i.status==true" disabled> {{i.creator}} | {{i.title}} - {{i.description}} - {{i.created_at | date: 'mediumDate' }}</p>
+        </div>
+      </div>
+      </div>
+      <div >
+        <h3>Pending</h3>
+        <div ng-repeat='x in user'>
+          <div ng-repeat='i in x'>
+        <p ng-if='loggeduser._id == i._creator && i.status == false'><input ng-click='status(i)' type="checkbox" ng-checked="i.status==true" ng-model='bucket.status'> {{i.creator}} | {{i.title}} - {{i.description}} - {{i.created_at | date: 'mediumDate' }}</p>
+        <p ng-if='loggeduser._id != i._creator && i.status == false'><input type="checkbox" ng-checked="i.status==true" disabled> {{i.creator}} | {{i.title}} - {{i.description}} - {{i.created_at | date: 'mediumDate' }}</p>
+      </div>
+    </div>
+      </div>
+
+  </div>
+</div>
